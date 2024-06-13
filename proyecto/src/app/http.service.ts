@@ -27,7 +27,7 @@ export class HttpService {
     localStorage.setItem('usuario', '');
     localStorage.setItem('sesion', 'false');
   };
-  
+
   obtenerSesion(): boolean {
     return localStorage.getItem('sesion') === 'true';
   };
@@ -76,7 +76,7 @@ export class HttpService {
   obtenerCategorias(){
     return this.http.post<any>(`${this.link}/obtenerCategorias`, {})
   }
-  
+
   obtenerMarcas(){
     return this.http.post<any>(`${this.link}/obtenerMarcas`, {})
   }
@@ -129,6 +129,10 @@ export class HttpService {
 
   facturarCarrito(cliente:string, pedidos:any){
     return this.http.post<any>(`${this.link}/facturarCarrito`, {cliente, pedidos});
+  }
+
+  actualizarPedido(pedido:string, cantidad:any){
+    return this.http.post<any>(`${this.link}/actualizarPedido`, {pedido, cantidad});
   }
 
 }

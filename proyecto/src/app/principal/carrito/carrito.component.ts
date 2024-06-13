@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { HttpService } from '../../http.service';
 import { Router } from '@angular/router';
+import { toInteger } from '@ng-bootstrap/ng-bootstrap/util/util';
 
 @Component({
   selector: 'app-carrito',
@@ -11,8 +12,9 @@ export class CarritoComponent implements OnInit {
 
   usuario:any;
   sesion:boolean=false;
-  pedidos:any;
-  cantidad:string="";
+  pedidos=[{cantidad:0, id:"", imagen:"", producto_v:"", precio:0, producto:""}];
+  cantidades: { [key: number]: number } = {};
+  productos:any;
 
   constructor(private servicioHttp:HttpService, private router:Router){}
 
@@ -24,6 +26,10 @@ export class CarritoComponent implements OnInit {
         if(datos){
           if(datos.respuesta){
             this.pedidos = datos.pedidos
+            this.pedidos.forEach(pedido => {
+              const idPedido = parseInt(pedido.id);
+              this.cantidades[idPedido] = pedido.cantidad;
+            });
           } else {
             this.pedidos = []
           }
@@ -35,10 +41,42 @@ export class CarritoComponent implements OnInit {
         this.pedidos=[];
       }
     )
+    this.servicioHttp.obtenerProductos().subscribe(
+      datos=>{
+        if(datos){
+          if(datos.respuesta){
+            this.productos = datos.productos
+          } else {
+            this.productos = []
+          }
+        } else {
+          this.productos = []
+        }
+      }, error =>{
+        console.log(error)
+        this.productos = []
+      }
+    )
+
   }
 
-  actualizar() {
-    // Implementa la lógica para actualizar la cantidad del producto en el carrito
+  actualizar(pedido:any, producto:any) {
+    this.servicioHttp.actualizarPedido(pedido, this.cantidades[pedido]).subscribe(
+      datos=>{
+        if(datos){
+          if(datos.respuesta){
+            alert("Pedido Actualizado")
+            window.location.reload()
+          } else {
+            alert("No fue posible actualizar el pedido")
+          }
+        } else {
+          alert("Error al actualizar el pedido")
+        }
+      }, error =>{
+        console.log(error)
+        alert("Error de ejecución")
+      })
   }
 
   eliminar(id:string) {
@@ -63,10 +101,10 @@ export class CarritoComponent implements OnInit {
       datos=>{
         if(datos){
           if(datos.respuesta){
-            alert("Pedido pagado con éxito");
+            alert("Pedido facturado con éxito");
             window.location.reload();
           } else {
-            alert("No se pudo pagar el pedido");
+            alert("No se pudo facturar el pedido");
           }
         }
       }, error => {
@@ -92,6 +130,10 @@ export class CarritoComponent implements OnInit {
         alert("Error al facturar el carrito")
       }
     )
+  }
+
+  ParseInt(cadena:string){
+    return parseInt(cadena);
   }
 
 }
