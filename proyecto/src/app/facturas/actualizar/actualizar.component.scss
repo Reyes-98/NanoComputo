@@ -1,0 +1,20 @@
+body {
+  background-color: #d8d3d3; /* Color de fondo general para añadir contraste */
+}
+.container {
+  padding: 50px 20px; /* Ajusta el padding para un mejor manejo del espacio */
+}
+.card {
+  margin: 20px; /* Espacio alrededor de las tarjetas para evitar el aspecto apretado */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transición suave para efecto hover */
+}
+.card:hover {
+  transform: translateY(-10px); /* Elevación al hacer hover */
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2); /* Sombra más prominente en hover */
+}
+.background-pattern {
+  /*background-image: url('path_to_your_subtle_background_image.png'); /* Sustituir con el camino correcto del gráfico */
+  background-size: cover;
+  background-position: center;
+  opacity: 0.5; /* Transparencia para no sobreponer el contenido textual */
+}

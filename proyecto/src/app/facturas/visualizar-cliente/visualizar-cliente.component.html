@@ -1,0 +1,31 @@
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+<!-- Barra de navegación -->
+<app-navegacion></app-navegacion>
+
+<table class="table table-responsive table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th>Codigo</th>
+            <th>Fecha</th>
+            <th>Cliente</th>
+            <th>Pagado</th>
+            <th>Total</th>
+            <th>Estado</th>
+            <th><i class="fa fa-tools"></i> Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let venta of ventas">
+            <td>{{ formatearCodigo(venta.codigo) }}</td>
+            <td>{{ venta.fecha | date: 'MMMM dd yyyy' }}</td>
+            <td>{{ venta.cliente_v }}</td>
+            <td>${{ venta.pago_parcial | number:'1.0-0' }}</td>
+            <td>${{ venta.total | number:'1.0-0'  }}</td> 
+            <td>{{ venta.estado }}</td>
+            <td>
+                <button class="btn btn-info btn-sm" (click)="visualizarVenta(venta)"><i class="fa fa-eye"></i>Detalles</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

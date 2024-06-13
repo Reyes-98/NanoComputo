@@ -1,0 +1,67 @@
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+<div class="modal-header">
+    <h5 class="modal-title">Información de la venta</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+<div class="modal-body">
+    <form class="container" (ngSubmit)="actualizarVenta()">
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="serial" class="form-label"><i class="fa fa-barcode"></i> Serial:</label>
+                <input type="text" class="form-control" id="serial" name="serial" [(ngModel)]="serial" [attr.disabled]="usuarioSesion.cargo == 'Administrador' ? true : null" required>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="fecha" class="form-label"><i class="fa fa-calendar-alt"></i> Fecha:</label>
+                <input type="date" class="form-control" id="fecha" name="fecha" [(ngModel)]="fecha" disabled required>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="cliente" class="form-label"><i class="fa fa-user"></i> Cliente:</label>
+                <input type="text" class="form-control" id="cliente" name="cliente" [(ngModel)]="cliente" disabled>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="pagoParcial" class="form-label"><i class="fa fa-credit-card"></i> Pago parcial:</label>
+                <input type="number" class="form-control" id="pagoParcial" name="pagoParcial" [(ngModel)]="pagoParcial" disabled required>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="total" class="form-label"><i class="fa fa-dollar-sign"></i> Total:</label>
+                <input type="number" class="form-control" id="total" name="total" [(ngModel)]="total" disabled required>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="estado" class="form-label"><i class="fa fa-info-circle"></i> Estado:</label>
+                <input type="text" class="form-control" id="estado" name="estado" [(ngModel)]="estado" disabled required>
+            </div>
+        </div>
+        <div class="row">
+            <div class="mb-3">
+                <label for="productos" class="form-label"><i class="fa fa-boxes"></i> Productos:</label>
+                <table class="table table-responsive table-striped">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Producto</th>
+                            <th>Precio</th>
+                            <th>Cantidad</th>
+                            <th>Subtotal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let pedido of pedidos">
+                            <td>{{ pedido.producto_v }}</td>
+                            <td>${{ pedido.precio | number:'1.0-0' }}</td>
+                            <td>{{ pedido.cantidad }}</td>
+                            <td>${{ pedido.subtotal | number:'1.0-0' }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div *ngIf="usuario.cargo == 'Administrador'" class="d-flex justify-content-between">
+            <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Actualizar</button>
+            <button class="btn btn-danger" (click)="eliminarVenta()"><i class="fa fa-trash-alt"></i> Eliminar</button>
+        </div>
+    </form>
+</div>
