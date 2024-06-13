@@ -293,6 +293,23 @@ class Ventas {
             return { respuesta: false };
         }
     }
+
+    
+    async actualizarPedido(pedido, cantidad){
+        try {
+            console.log(pedido, cantidad)
+            const resultado = await this.peticionesDB.query("UPDATE pedidos SET pedidos.cantidad = ? WHERE pedidos.id = ?",[cantidad, pedido]);
+            if(resultado[0].affectedRows > 0){
+                return {respuesta: true};
+            } else {
+                return {respuesta: false};
+            }
+        } catch(error){
+            console.log(error);
+            return {respuesta: false};
+        }
+
+    }
     
 }
 

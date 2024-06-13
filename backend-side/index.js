@@ -181,6 +181,15 @@ servidor.post("/facturarCarrito", async(req, res)=>{
 })
 
 
+servidor.post("/actualizarPedido", async(req, res)=>{
+    const {pedido, cantidad} = req.body
+    const ventas = new Ventas();
+    const datos = await ventas.actualizarPedido(pedido, cantidad);
+    res.json(datos);
+})
+ 
+
+
 servidor.listen(PORT, (req, res)=>{
     console.log('SERVIDOR CORRIENDO, PUERTO:' + PORT);
 });
