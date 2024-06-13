@@ -1,0 +1,65 @@
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+
+    <div class="modal-header">
+    <h5 class="modal-title">Información de Usuario</h5>
+   
+    </div>
+    <div class="modal-body">
+    <form (ngSubmit)="actualizarUsuario()" class="container">
+        <div class="row">
+            <!-- Nombre y Apellidos -->
+            <div class="col-md-6 mb-3">
+                <label for="nombre" class="form-label"><i class="fa fa-user"></i> Nombre:</label>
+                <input type="text" class="form-control" id="nombre" name="nombre" [(ngModel)]="nombres" required>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="apellidos" class="form-label"><i class="fa fa-users"></i> Apellidos:</label>
+                <input type="text" class="form-control" id="apellidos" name="apellidos" [(ngModel)]="apellidos" required>
+            </div>
+        </div>
+        <div class="row">
+            <!-- Teléfono y Cargo -->
+            <div class="col-md-6 mb-3">
+                <label for="telefono" class="form-label"><i class="fa fa-phone"></i> Teléfono:</label>
+                <input type="text" class="form-control" id="telefono" name="telefono" [(ngModel)]="telefono" required>
+            </div>
+            <div *ngIf="usuario.cargo == 'Administrador'" class="col-md-6 mb-3">
+                <label for="cargo" class="form-label"><i class="fa fa-briefcase"></i> Cargo:</label>
+                <select class="form-select" id="cargo" name="cargo" [(ngModel)]="cargoUsuario" required>
+                    <option *ngFor="let opcion of cargos" [value]="opcion.id">{{ opcion.nombre }}</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <!-- Identificación y Correo electrónico -->
+            <div class="col-md-6 mb-3">
+                <label for="identificacion" class="form-label"><i class="fa fa-id-card"></i> Identificación:</label>
+                <input type="text" class="form-control" id="identificacion" name="identificacion" [(ngModel)]="identificacion" required>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="correo" class="form-label"><i class="fa fa-envelope"></i> Correo electrónico:</label>
+                <input type="email" class="form-control" id="correo" name="correo" [(ngModel)]="correo" required>
+            </div>
+        </div>
+        <div class="row">
+            <!-- Pregunta de seguridad y Respuesta -->
+            <div *ngIf="usuario.cargo == 'Administrador'"  class="col-md-6 mb-3">
+                <label for="preguntaSeguridad" class="form-label"><i class="fa fa-question-circle"></i> Pregunta de seguridad:</label>
+                <select class="form-select" id="preguntaSeguridad" name="preguntaSeguridad" [(ngModel)]="pregunta" required>
+                    <option value="nombre de tu primer mascota">Nombre de tu primer mascota</option>
+                    <option value="ciudad natal">Ciudad natal</option>
+                    <option value="nombre de tu mejor amigo">Nombre de tu mejor amigo</option>
+                </select>
+            </div>
+            <div *ngIf="usuario.cargo == 'Administrador'"  class="col-md-6 mb-3">
+                <label for="respuesta" class="form-label"><i class="fa fa-reply"></i> Respuesta:</label>
+                <input type="text" class="form-control" id="respuesta" name="respuesta" [(ngModel)]="respuesta" required>
+            </div>
+        </div>
+        <div class="d-flex justify-content-between">
+            <button *ngIf="usuario.cargo == 'Administrador' || usuario.identificacion == identificacion " type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Actualizar</button>
+            <button *ngIf="usuario.cargo == 'Administrador' && usuario.identificacion != identificacion" class="btn btn-danger" (click)="eliminarUsuario()"><i class="fa fa-trash-alt"></i> Eliminar</button>
+        </div>
+    </form>
+    </div>

@@ -1,0 +1,75 @@
+<app-navegacion></app-navegacion>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #d8d3d3; /* Color de fondo general para añadir contraste */
+        }
+        .container {
+            padding: 50px 20px; /* Ajusta el padding para un mejor manejo del espacio */
+        }
+        .card {
+            margin: 20px; /* Espacio alrededor de las tarjetas para evitar el aspecto apretado */
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transición suave para efecto hover */
+        }
+        .card:hover {
+            transform: translateY(-10px); /* Elevación al hacer hover */
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2); /* Sombra más prominente en hover */
+        }
+        .header-icon {
+            font-size: 2rem; /* Tamaño del icono */
+            margin-right: 10px; /* Espaciado del icono */
+        }
+        .background-pattern {
+            background-image: url('path_to_your_subtle_background_image.png'); /* Sustituir con el camino correcto del gráfico */
+            background-size: cover;
+            background-position: center;
+
+        }
+    </style>
+
+<body>
+   
+    <div class="container background-pattern">
+        <div class="row justify-content-center">
+            <!-- Tarjeta de Sobre Nosotros -->
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header bg-light d-flex align-items-center">
+                        <i class="fas fa-info-circle header-icon"></i>
+                        <span>Sobre Nosotros</span>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">La empresa NanoComputo es especializada en la venta de computadoras y servicios de soporte técnico.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Tarjeta de Misión -->
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header bg-light d-flex align-items-center">
+                        <i class="fas fa-bullseye header-icon"></i>
+                        <span>Misión</span>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">Nos comprometemos a proporcionar soluciones tecnológicas innovadoras y servicios de calidad excepcional.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Tarjeta de Visión -->
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header bg-light d-flex align-items-center">
+                        <i class="fas fa-eye header-icon"></i>
+                        <span>Visión</span>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">Nos visualizamos como líderes en el mercado de tecnología, reconocidos por nuestra excelencia en productos y servicios.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+</body>

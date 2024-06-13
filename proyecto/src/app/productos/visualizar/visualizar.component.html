@@ -1,0 +1,35 @@
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+<!-- Barra de navegación -->
+<app-navegacion></app-navegacion>
+
+<table class="table table-responsive table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th>Serial</th>
+            <th>Nombre</th>
+            <th>Precio</th>
+            <th>Categoría</th>
+            <th>Marca</th>
+            <th>Cantidad</th>
+            <th>Descripción</th>
+            <th>Estado</th>
+            <th><i class="fa fa-tools"></i> Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let producto of productos">
+            <td>{{ producto.serial }}</td>
+            <td>{{ producto.nombre }}</td>
+            <td>${{ producto.precio | number: '1.0-0' }}</td>
+            <td>{{ producto.categoria_p }}</td>
+            <td>{{ producto.marca_p }}</td>
+            <td>{{ producto.cantidad }}</td>
+            <td>{{ producto.descripcion }}</td>
+            <td>{{ producto.estado }}</td>
+            <td>
+                <button class="btn btn-info btn-sm" (click)="visualizarProducto(producto)"><i class="fa fa-eye"></i> Detalles</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

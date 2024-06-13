@@ -1,0 +1,62 @@
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+<div class="modal-header">
+    <h5 class="modal-title">Información de Producto</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+<div class="modal-body">
+    <form (ngSubmit)="actualizarUsuario()" class="container">
+        <div class="row">
+            <!-- Serial y Nombre -->
+            <div class="col-md-6 mb-3">
+                <label for="serial" class="form-label"><i class="fa fa-barcode"></i> Serial:</label>
+                <input type="text" class="form-control" id="serial" name="serial" [(ngModel)]="serial" required>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="nombre" class="form-label"><i class="fa fa-tag"></i> Nombre:</label>
+                <input type="text" class="form-control" id="nombre" name="nombre" [(ngModel)]="nombre" required>
+            </div>
+        </div>
+        <div class="row">
+            <!-- Precio y Categoría -->
+            <div class="col-md-6 mb-3">
+                <label for="precio" class="form-label"><i class="fa fa-dollar-sign"></i> Precio:</label>
+                <input type="text" class="form-control" id="precio" name="precio" [(ngModel)]="precio" required>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="categoria" class="form-label"><i class="fa fa-list"></i> Categoría:</label>
+                <select class="form-select" id="categoria" name="categoria" [(ngModel)]="categoria" required>
+                    <option *ngFor="let opcionC of categorias" [value]="opcionC.id">{{ opcionC.nombre }}</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <!-- Marca y Cantidad -->
+            <div class="col-md-6 mb-3">
+                <label for="marca" class="form-label"><i class="fa fa-industry"></i> Marca:</label>
+                <select class="form-select" id="marca" name="marca" [(ngModel)]="marca" required>
+                    <option *ngFor="let opcionM of marcas" [value]="opcionM.id">{{ opcionM.nombre }}</option>
+                </select>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="cantidad" class="form-label"><i class="fa fa-boxes"></i> Cantidad:</label>
+                <input type="text" class="form-control" id="cantidad" name="cantidad" [(ngModel)]="cantidad" required>
+            </div>
+        </div>
+        <div class="row">
+            <!-- Descripción e Imagen -->
+            <div class="col-md-6 mb-3">
+                <label for="descripcion" class="form-label"><i class="fa fa-align-left"></i> Descripción:</label>
+                <input type="text" class="form-control" id="descripcion" name="descripcion" [(ngModel)]="descripcion" required>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="imagen" class="form-label"><i class="fa fa-image"></i> Imagen:</label>
+                <img src="assest/logoNanoComputoB.png" alt="producto" class="img-fluid">
+            </div>
+        </div>
+        <div class="d-flex justify-content-between">
+            <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Actualizar</button>
+            <button class="btn btn-danger" (click)="eliminarProducto()"><i class="fa fa-trash-alt"></i> Eliminar</button>
+        </div>
+    </form>
+</div>

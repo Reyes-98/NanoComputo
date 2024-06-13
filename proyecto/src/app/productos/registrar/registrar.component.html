@@ -1,0 +1,60 @@
+<app-navegacion></app-navegacion>
+
+<!-- Formulario de registro de productos -->
+<form (ngSubmit)="registrarProducto()" class="container mt-5 p-4 border rounded bg-light shadow">
+    <h2 class="text-center mb-4">Registro de Producto</h2>
+    <div class="row">
+      <!-- Nombre -->
+      <div class="col-md-6 mb-3">
+        <label for="nombre" class="form-label"><i class="fa fa-tag"></i> Nombre:</label>
+        <input type="text" class="form-control" id="nombre" name="nombre" [(ngModel)]="nombre" required>
+      </div>
+      <!-- Serial -->
+      <div class="col-md-6 mb-3">
+        <label for="serial" class="form-label"><i class="fa fa-serial"></i> Serial:</label>
+        <input type="text" class="form-control" id="serial" name="serial" [(ngModel)]="serial" required>
+      </div>
+    </div>
+    <div class="row">
+      <!-- Precio -->
+      <div class="col-md-6 mb-3">
+        <label for="precio" class="form-label"><i class="fa fa-dollar-sign"></i> Precio:</label>
+        <input type="number" class="form-control" id="precio" name="precio" [(ngModel)]="precio" required>
+      </div>
+      <!-- Categoría -->
+      <div class="col-md-6 mb-3">
+        <label for="categoria" class="form-label"><i class="fa fa-list"></i> Categoría:</label>
+        <select id="categoria" class="form-select" name="categoria" [(ngModel)]="categoria" required>
+            <option *ngFor="let opcionC of categorias" [value]="opcionC.id">{{ opcionC.nombre }}</option>
+          </select>
+      </div>
+    </div>
+    <div class="row">
+      <!-- Marca -->
+      <div class="col-md-6 mb-3">
+        <label for="marca" class="form-label"><i class="fa fa-trademark"></i> Marca:</label>
+        <select id="marca" class="form-select" name="marca" [(ngModel)]="marca" required>
+          <option *ngFor="let opcionM of marcas" [value]="opcionM.id">{{opcionM.nombre}}</option>
+        </select>
+      </div>
+      <!-- Cantidad -->
+      <div class="col-md-6 mb-3">
+        <label for="cantidad" class="form-label"><i class="fa fa-cubes"></i> Cantidad:</label>
+        <input type="number" class="form-control" id="cantidad" name="cantidad" [(ngModel)]="cantidad" required>
+      </div>
+    </div>
+    <div class="row">
+      <!-- Descripción -->
+      <div class="col-md-6 mb-3">
+        <label for="descripcion" class="form-label"><i class="fa fa-info-circle"></i> Descripción:</label>
+        <input type="text" class="form-control" id="descripcion" name="descripcion" [(ngModel)]="descripcion" required>
+      </div>
+      <!-- Imagen -->
+    <div *ngIf="false" class="col-md-6 mb-3">
+        <label for="imagen" class="form-label"><i class="fa fa-image"></i> Imagen:</label>
+        <!--<input type="file" class="form-control" id="imagen" name="imagen" (change)="onFileChange($event)" required>-->
+    </div>
+    </div>
+    <button type="submit" class="btn btn-primary w-100">Registrar Producto</button>
+  </form>
+  

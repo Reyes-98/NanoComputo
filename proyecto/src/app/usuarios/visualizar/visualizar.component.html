@@ -1,0 +1,31 @@
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+<!-- Barra de navegación -->
+<app-navegacion></app-navegacion>
+
+<table class="table table-responsive table-striped">
+  <thead class="thead-dark">
+      <tr>
+          <th>Identificación</th>
+          <th>Nombre</th>
+          <th>Apellidos</th>
+          <th>Teléfono</th>
+          <th>Cargo</th>
+          <th>Correo</th>
+          <th><i class="fa fa-tools"></i> Acciones</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr *ngFor="let usuario_l of usuarios">
+        <td *ngIf="usuario.identificacion != usuario_l.identificacion">{{ usuario_l.identificacion }}</td>
+        <td *ngIf="usuario.identificacion != usuario_l.identificacion">{{ usuario_l.nombres }}</td>
+        <td *ngIf="usuario.identificacion != usuario_l.identificacion">{{ usuario_l.apellidos }}</td>
+        <td *ngIf="usuario.identificacion != usuario_l.identificacion">{{ usuario_l.telefono }}</td>
+        <td *ngIf="usuario.identificacion != usuario_l.identificacion">{{ usuario_l.nombre }}</td>
+        <td *ngIf="usuario.identificacion != usuario_l.identificacion">{{ usuario_l.correo }}</td>
+        <td *ngIf="usuario.identificacion != usuario_l.identificacion">
+            <button class="btn btn-info btn-sm" (click)="visualizarCliente(usuario_l)"><i class="fa fa-eye"></i> Detalles</button>
+        </td>
+      </tr>
+  </tbody>
+</table>

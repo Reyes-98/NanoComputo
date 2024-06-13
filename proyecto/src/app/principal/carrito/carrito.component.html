@@ -1,0 +1,33 @@
+<app-navegacion></app-navegacion>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+
+<div class="text-center my-3">
+  <h1>Carrito de compras</h1>
+  <button *ngIf="pedidos.length > 0" class="btn btn-primary my-5" (click)="facturarCarrito(usuario.identificacion, pedidos)">
+      <i class="fas fa-cash-register"></i> Facturar todo el carrito
+  </button>
+  <h2 *ngIf="pedidos.length < 1"><i class="fas fa-shopping-cart"></i> Carrito Vacío</h2>
+</div>
+<div class="container">
+    <div class="row justify-content-start">
+        <div *ngFor="let pedido of pedidos" class="col-lg-6 mb-4">
+            <div class="card h-100 text-center shadow">
+                <div class="card-body">
+                    <img [src]="pedido.imagen" class="card-img-top mb-3" alt="Imagen del producto">
+                    <h5 class="card-title">{{ pedido.producto_v }}</h5>
+                    <p><i class="fas fa-box"></i> Cantidad: {{ pedido.cantidad }}</p>
+                    <p><i class="fas fa-tag"></i> Precio Unitario: ${{ pedido.precio | number:"1.0-0" }}</p>
+                    <p><i class="fas fa-calculator"></i> Total: ${{ pedido.precio * pedido.cantidad | number:"1.0-0" }}</p>
+                    <div class="d-flex justify-content-around">
+                        <button class="btn btn-info" (click)="actualizar()"><i class="fas fa-sync-alt"></i> Actualizar</button>
+                        <button class="btn btn-danger" (click)="eliminar(pedido.id)"><i class="fas fa-trash-alt"></i> Eliminar</button>
+                        <button class="btn btn-success" (click)="pagarPedido(usuario.identificacion, pedido)"><i class="fas fa-wallet"></i> Facturar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,22 @@
+<app-navegacion></app-navegacion>
+<main class="form-signin w-100 m-auto">
+  <form class="form-signin mt-5 p-4 bg-light shadow rounded" (ngSubmit)="iniciarSesion()">
+    <div class="text-center mb-4">
+      <img src="../assets/LogoNanocomputo.png" alt="Logo NanoComputo" width="120" height="120">
+      <h1 class="h3 mb-3 fw-normal">NanoComputo</h1>
+    </div>
+
+    <div class="form-floating mb-3">
+      <input type="email" [(ngModel)]="correo" name="correo" class="form-control" id="correoInput" placeholder="nombre@ejemplo.com">
+      <label for="correoInput">Correo Electronico</label>
+    </div>
+
+    <div class="form-floating mb-3">
+      <input type="password" [(ngModel)]="contrasena" name="contrasena" class="form-control" id="passwordInput" placeholder="Contraseña">
+      <label for="passwordInput">Contraseña</label>
+    </div>
+
+    <button type="submit" class="btn btn-primary w-100 mb-2">Ingresar</button>
+    <button type="button" (click)="goToPrincipal()" class="btn btn-link w-100">¿Olvidó su contraseña?</button>
+  </form>
+</main>
